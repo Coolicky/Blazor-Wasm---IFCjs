@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm install" WorkingDirectory="NpmJS" />
+    <Exec Command="npm run build" WorkingDirectory="NpmJS" />
+  </Target>
+  
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
