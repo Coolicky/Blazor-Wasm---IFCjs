@@ -1,4 +1,15 @@
 ﻿@page "/"
+
+@inject IJSRuntime _jsRuntime
+
 <PageTitle>Index</PageTitle>
-<input type="file" name="load" id="file-input" />
-<div id="three-canvas"></div>
+
+<div style="height:100vh; width:100vh" id="three-canvas"></div>
+
+@code{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await _jsRuntime.InvokeVoidAsync("ThreeJSFunctions.load");
+    }
+}
